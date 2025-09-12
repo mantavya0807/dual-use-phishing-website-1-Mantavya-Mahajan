@@ -25,35 +25,36 @@ function resetFormState() {
 
 // --- Event Listener for Email/Password Form ---
 loginForm.addEventListener('submit', async (event) => {
-    // 1. Prevent the default form submission behavior
     event.preventDefault();
-    resetFormState();
-
+    
     const email = emailInput.value;
     const password = passwordInput.value;
-    // 3. The Login Logic
-    // Show a "loading" message
-    statusMessage.textContent = "Logging in...";
-    statusMessage.style.color = 'gray';
 
-    // Simulate a network delay (like a real API call) with setTimeout
-    setTimeout(() => {
-        if (email === CORRECT_EMAIL && password === CORRECT_PASSWORD) {
-            // SUCCESS!
-            statusMessage.textContent = "Success! Redirecting to dashboard...";
-            statusMessage.classList.add('success');
-            emailInput.classList.add('success');
-            passwordInput.classList.add('success');
-            // In a real app, you would redirect here:
-            // window.location.href = "/dashboard";
+    try {
+        // Send a POST request to your backend's /login endpoint
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const resultText = await response.text();
+        
+        // Display the message from the server
+        statusMessage.textContent = resultText;
+        
+        if (response.ok && resultText.includes('Success')) {
+            statusMessage.style.color = 'green';
         } else {
-            // FAILED!
-            statusMessage.textContent = "Error: Invalid email or password.";
-            statusMessage.classList.add('error');
-            emailInput.classList.add('error');
-            passwordInput.classList.add('error');
+            statusMessage.style.color = 'red';
         }
-    }, 1000); // Wait 1 second (1000 milliseconds) to simulate loading
+
+    } catch (error) {
+        statusMessage.textContent = 'Failed to connect to the server.';
+        statusMessage.style.color = 'red';
+    }
 });
 
 // --- Event Listener for Simulated Google Login ---

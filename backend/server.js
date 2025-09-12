@@ -55,15 +55,15 @@ app.post('/login', async (req, res) => {
         
         if (!user) {
             // Use a generic message to prevent leaking info about which emails are registered
-            return res.status(400).send("Invalid email or password.");
+            return res.status(400).send("Cannot find user.");
         }
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
         if (isPasswordCorrect) {
-            res.status(200).send("Success! You are logged in.");
+            res.status(200).send("Success! Logged in.");
         } else {
-            res.status(400).send("Invalid email or password.");
+            res.status(400).send("Not Allowed. Incorrect password.");
         }
     } catch (error) {
         console.error("Login error:", error);
@@ -74,5 +74,5 @@ app.post('/login', async (req, res) => {
 // --- Start the server ---
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port http://localhost:${PORT}`);
 });
