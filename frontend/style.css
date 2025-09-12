@@ -42,7 +42,7 @@ label {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box; /* Important for padding */
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease; /* Smooth transition */
 }
 
 .form-input:focus {
