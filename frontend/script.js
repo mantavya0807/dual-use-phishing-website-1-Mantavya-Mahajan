@@ -32,7 +32,7 @@ loginForm.addEventListener('submit', async (event) => {
 
     try {
         // Send a POST request to your backend's /login endpoint
-        const response = await fetch('https://dual-use-phishing-website-1-mantavya.onrender.com/login', {
+        const response = await fetch('https://api.outlier-test.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
