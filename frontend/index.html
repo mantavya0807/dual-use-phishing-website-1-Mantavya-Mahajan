@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Cloned App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div id="login-wrapper">
+            <h1>Welcome back</h1>
+            
+            <form id="login-form" novalidate>
+                <div class="form-group">
+                    <label for="email-input">Email</label>
+                    <input id="email-input" class="form-input" type="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-input">Password</label>
+                    <input id="password-input" class="form-input" type="password" required>
+                </div>
+                <button id="login-button" type="submit">Log In</button>
+            </form>
+            
+            <div class="separator">OR</div>
+
+            <button id="google-login-button" class="google-btn" type="button">
+                Log in with Google
+            </button>
+            
+            <div id="status-message" class="status"></div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
